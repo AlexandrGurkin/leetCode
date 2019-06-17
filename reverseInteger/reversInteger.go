@@ -1,35 +1,19 @@
 package reverseInteger
 
-import (
-	"math"
-	"strconv"
-)
-
-func reverseStr(s string) string {
-	n := len(s)
-	runes := make([]rune, n)
-	for _, rune := range s {
-		n--
-		runes[n] = rune
-	}
-	return string(runes[n:])
-}
+import "math"
 
 func reverse(x int) int {
-	var negative bool
-	if x < 0 {
-		negative = true
-		x = 0 - x
+	rev := 0
+	for x != 0 {
+		pop := x % 10
+		x /= 10
+		if rev > math.MaxInt32/10 || (rev == math.MaxInt32/10 && pop > 7) {
+			return 0
+		}
+		if rev < math.MinInt32/10 || (rev == math.MinInt32/10 && pop < -8) {
+			return 0
+		}
+		rev = rev*10 + pop
 	}
-	str := strconv.Itoa(x)
-	r := reverseStr(str)
-	res, _ := strconv.ParseInt(r, 10, 64)
-	if negative {
-		res = - res
-	}
-	if res < math.MinInt32 || res > math.MaxInt32{
-		return 0
-	} else {
-		return int(res)
-	}
+	return rev
 }
