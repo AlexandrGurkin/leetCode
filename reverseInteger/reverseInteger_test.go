@@ -1,6 +1,9 @@
 package reverseInteger
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
 
 func TestReverse(t *testing.T) {
 	res := reverse(123)
@@ -14,4 +17,8 @@ func TestReverseMin(t *testing.T) {
 	if res != -321 {
 		t.Error("Expected 321, got ", res)
 	}
+}
+
+func TestTrash(t *testing.T) {
+	fmt.Println(f())
 }

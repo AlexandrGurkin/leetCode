@@ -1,6 +1,9 @@
 package reverseInteger
 
-import "math"
+import (
+	"fmt"
+	"math"
+)
 
 func reverse(x int) int {
 	rev := 0
@@ -16,4 +19,12 @@ func reverse(x int) int {
 		rev = rev*10 + pop
 	}
 	return rev
+}
+
+func f() (x int) {
+	x = 0
+	fmt.Println(&x)
+	defer func() { fmt.Println(x) }()
+	defer func() { x = 2; fmt.Println(&x) }()
+	return x
 }
